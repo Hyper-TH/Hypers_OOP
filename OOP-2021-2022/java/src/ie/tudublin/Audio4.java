@@ -70,7 +70,7 @@ public class Audio4 extends PApplet
         background(0);
         // stroke(255);
 
-        float halfH = height / 2;
+        // float halfH = height / 2;
 
         // for (int i = 0; i < ab.size(); i++)
         // {
