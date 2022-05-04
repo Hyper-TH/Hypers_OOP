@@ -1,10 +1,42 @@
 package c20361521;
 
-import processing.core.*;
+import ie.tudublin.Visual;
+import ie.tudublin.VisualException;
 
-public class RotatingBands  
-{
-    MyVisuals mv;
+public class RotatingBands extends Visual {
+
+
+    public void settings()
+    {
+        size(800, 800, P3D);
+        println("CWD: " + System.getProperty("user.dir"));
+        //fullScreen(P3D, SPAN);
+    }
+
+    public void keyPressed()
+    {
+        if (key == ' ')
+        {
+            getAudioPlayer().cue(0);
+            getAudioPlayer().play();
+            
+        }
+ 
+    }
+
+    public void setup()
+    {
+        colorMode(HSB);
+        noCursor();
+        
+        setFrameSize(256);
+
+        startMinim();
+        loadAudio("Shelter.mp3");
+        getAudioPlayer().play();
+        //startListening(); 
+        
+    }
 
     float radius = 200;
 
@@ -12,50 +44,46 @@ public class RotatingBands
 
     float rot = 0;
 
-    public RotatingBands(MyVisuals mv)
+    public void draw()
     {
-        this.mv = mv;
-    }
+        calculateAverageAmplitude();
+        try
+        {
+            calculateFFT();
+        }
+        catch(VisualException e)
+        {
+            e.printStackTrace();
+        }
+        calculateFrequencyBands();
+        background(0);
+        noFill();
+        stroke(255);
+        lights();
+        stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
+        camera(0, -500, 500, 0, 0, 0, 0, 1, 0);
+        //translate(0, 0, -250);
 
-    public void render()
-    {
-        // calculateAverageAmplitude();
-        // try
-        // {
-        //     calculateFFT();
-        // }
-        // catch(VisualException e)
-        // {
-        //     e.printStackTrace();
-        // }
-        // calculateFrequencyBands();
-        // background(0);
-        // noFill();
-        // stroke(255);
-        // lights();
-        // stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
-        // camera(0, -500, 500, 0, 0, 0, 0, 1, 0);
-        // //translate(0, 0, -250);
+        rot += getAmplitude() / 8.0f;
 
-        // rot += getAmplitude() / 8.0f;
-
-        // rotateY(rot);
-        float[] bands = mv.getSmoothedBands();
-
+        rotateY(rot);
+        float[] bands = getSmoothedBands();
         for(int i = 0 ; i < bands.length ; i ++)
         {
-            float theta = PApplet.map(i, 0, bands.length, 0, PApplet.TWO_PI);
+            float theta = map(i, 0, bands.length, 0, TWO_PI);
 
-            mv.stroke(PApplet.map(i, 0, bands.length, 0, 255), 255, 255);
-            float x = PApplet.sin(theta) * radius;
-            float z = PApplet.cos(theta) * radius;
+            stroke(map(i, 0, bands.length, 0, 255), 255, 255);
+            float x = sin(theta) * radius;
+            float z = cos(theta) * radius;
             float h = bands[i];
-            mv.pushMatrix();
-            mv.translate(x, - h / 2 , z);
-            mv.rotateY(theta);
-            mv.box(50, h, 50);
-            mv.popMatrix();
+            pushMatrix();
+            translate(x, - h / 2 , z);
+            rotateY(theta);
+            box(50, h, 50);
+            popMatrix();
         }
 
     }
+    float angle = 0;
+
 }

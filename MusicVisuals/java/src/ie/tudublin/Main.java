@@ -17,15 +17,22 @@ public class Main
 	// 	main.startUI();			
 	// }
 
-	public static void Rain()
+	public static void MyVisuals()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new rain());
+        processing.core.PApplet.runSketch( a, new MyVisuals());
+
+    }
+
+	public static void RoughRenders()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new RoughRenders());
 
     }
 
 	public static void main(String[] args)
     {
-        Rain();
+        RoughRenders();
     }
 } 

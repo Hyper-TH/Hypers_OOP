@@ -6,6 +6,7 @@ public class MyVisuals extends Visual
 {    
     WaveForm wf;
     AudioBandsVisual abv;
+    RotatingBands rab;
     // Stars str;
     // Starfield stf;
 
@@ -35,7 +36,7 @@ public class MyVisuals extends Visual
         abv = new AudioBandsVisual(this);
         // str = new Stars(this);
         // stf = new Starfield(this);
-        // rab = new RotatingAudioBands(this);   
+        // rab = new RotatingBands(this);   
     }
 
     public void keyPressed()
@@ -64,9 +65,8 @@ public class MyVisuals extends Visual
 
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
-        wf.render();
-        abv.render();
-        // str.render();
-        // stf.draw();
+        // wf.render();
+        // abv.render();
+        rab.draw();
     }
 }
