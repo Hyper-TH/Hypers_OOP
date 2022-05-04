@@ -20,7 +20,7 @@ public abstract class Visual extends PApplet
 
 	private float amplitude  = 0;
 	private float smothedAmplitude = 0;
-
+	private float currentPos;
 	
 	
 	public void startMinim() 
@@ -91,6 +91,16 @@ public abstract class Visual extends PApplet
 		ab = ap.mix;
 	}
 
+	public float getPosition()
+	{
+		return currentPos;
+	}
+
+	public void setPosition(float currentPos)
+	{
+		this.currentPos = ((AudioPlayer) ab).position();
+	}
+	
 	public int getFrameSize() {
 		return frameSize;
 	}

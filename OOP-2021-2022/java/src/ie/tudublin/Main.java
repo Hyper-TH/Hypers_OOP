@@ -114,7 +114,7 @@ public class Main
     {
         // helloProcessing2();
         // colorfulLife();
-        life();
+        // life();
         // life2();
         // life3();
         // bugZap();

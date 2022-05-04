@@ -103,6 +103,8 @@ public class Audio2 extends PApplet {
                 }        
                 break;
             }
+
+            // sides
             case 2:
             {
                 for (int i = 0; i < ab.size(); i++) {
@@ -139,6 +141,8 @@ public class Audio2 extends PApplet {
                 rect(width / 2, height / 2, size, size);
                 break;
             }
+
+            // GoodTrip
             case 5:
             {
                 float r = 1f;
@@ -161,6 +165,8 @@ public class Audio2 extends PApplet {
                 // ??
                 break;
             }
+
+            // cube
             case 6:
             {
                 lights();

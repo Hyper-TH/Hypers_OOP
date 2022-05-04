@@ -23,7 +23,7 @@ public class HelloProcessing2 extends PApplet
 	// These are fields in the class now and can be used in 
 	// any of the methods in the HelloProcessing2 class 
 
-	float x = 300;
+	float x = 250;
 	int i;
 	String s;
 	boolean b;
@@ -35,7 +35,7 @@ public class HelloProcessing2 extends PApplet
 
 		// Turns off drawing around shapes
 		noStroke();
-
+ 
 		// Sets the fill color
 		fill(0, 0, 255); 
 
@@ -69,6 +69,8 @@ public class HelloProcessing2 extends PApplet
 		// Last two specify half of width and height
 		// rectMode(RADIUS)
 		
+		// stroke(R, G, B);
+		// stroke(grayscale);
 		stroke(0, 255, 255);
 
 		// Changes the thickness of lines

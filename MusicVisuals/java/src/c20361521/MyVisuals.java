@@ -1,11 +1,13 @@
-package example;
+package c20361521;
 
 import ie.tudublin.*;
 
-public class MyVisual extends Visual
+public class MyVisuals extends Visual
 {    
     WaveForm wf;
     AudioBandsVisual abv;
+    // Stars str;
+    // Starfield stf;
 
     public void settings()
     {
@@ -31,6 +33,8 @@ public class MyVisual extends Visual
         
         wf = new WaveForm(this);
         abv = new AudioBandsVisual(this);
+        // str = new Stars(this);
+        // stf = new Starfield(this);
         // rab = new RotatingAudioBands(this);   
     }
 
@@ -62,5 +66,7 @@ public class MyVisual extends Visual
         calculateAverageAmplitude();        
         wf.render();
         abv.render();
+        // str.render();
+        // stf.draw();
     }
 }
