@@ -10,6 +10,7 @@ import ie.tudublin.*;
 
 public class RoughRenders extends Visual {
 
+    //Rain1 rn;
     // Minim minim; // Connect to minim
     // AudioInput ai; // How to connect to mic
     // AudioPlayer ap;
@@ -44,6 +45,8 @@ public class RoughRenders extends Visual {
         // //ab = ai.mix; 
         colorMode(HSB);
         lerpedBuffer = new float[width];
+
+        //rn = new Rain1();
         
     }
 
@@ -75,7 +78,8 @@ public class RoughRenders extends Visual {
         // float halfHeight = height / 2;
         float average = 0;
         float sum = 0;
-
+        
+        
         try
         {
             // Call this if you want to use FFT data
@@ -90,7 +94,7 @@ public class RoughRenders extends Visual {
         calculateFrequencyBands(); 
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
-
+        
         // Calculate the average of the buffer
         for (int i = 0; i < getAudioBuffer().size(); i ++)
         {
@@ -100,9 +104,10 @@ public class RoughRenders extends Visual {
         
         // Move lerpedAverage 10% closer to average every frame
         lerpedAverage = getSmoothedAmplitude(); // NOT AN ARRAY
-
+        
         // lerpedBuffer = getSmoothedBands();
-
+        //rn.draw();
+        
         switch (which)
         {
             // let ab.get(i) be getAudioBuffer().size()

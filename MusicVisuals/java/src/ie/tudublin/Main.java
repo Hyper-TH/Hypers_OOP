@@ -31,8 +31,23 @@ public class Main
 
     }
 
+	// public static void Rain1()
+	// {
+	// 	String[] a = {"MAIN"};
+    //     processing.csore.PApplet.runSketch( a, new Rain1());
+
+    // }
+
+	public static void strings()
+	{
+		String[] a = {"MAIN"};
+    	processing.core.PApplet.runSketch( a, new strings());
+
+    }
+
 	public static void main(String[] args)
     {
-        RoughRenders();
+        //RoughRenders();
+		MyVisuals();
     }
 } 

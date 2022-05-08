@@ -7,6 +7,7 @@ public class MyVisuals extends Visual
     WaveForm wf;
     AudioBandsVisual abv;
     RotatingBands rab;
+    Strings sr;
     // Stars str;
     // Starfield stf;
 
@@ -34,6 +35,7 @@ public class MyVisuals extends Visual
         
         wf = new WaveForm(this);
         abv = new AudioBandsVisual(this);
+        sr = new Strings();
         // str = new Stars(this);
         // stf = new Starfield(this);
         // rab = new RotatingBands(this);   
@@ -67,6 +69,7 @@ public class MyVisuals extends Visual
         calculateAverageAmplitude();        
         // wf.render();
         // abv.render();
-        rab.draw();
+        // rab.draw();
+        sr.draw();
     }
 }
