@@ -16,7 +16,7 @@ public abstract class Visual extends PApplet
 	private Minim minim;
 	private AudioInput ai;
 	private AudioPlayer ap;
-	private AudioBuffer ab;
+	public static AudioBuffer ab;
 	public BeatDetect beat;
 	private FFT fft;
 
