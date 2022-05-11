@@ -2,6 +2,7 @@ package ie.tudublin;
 
 import processing.core.PApplet;
 import ddf.minim.*;
+import ddf.minim.analysis.BeatDetect;
 import ddf.minim.analysis.FFT;
 
 public abstract class Visual extends PApplet
@@ -16,6 +17,7 @@ public abstract class Visual extends PApplet
 	private AudioInput ai;
 	private AudioPlayer ap;
 	private AudioBuffer ab;
+	public BeatDetect beat;
 	private FFT fft;
 
 	private float amplitude  = 0;
@@ -152,5 +154,12 @@ public abstract class Visual extends PApplet
 
 	public FFT getFFT() {
 		return fft;
+	}
+
+	public BeatDetect BeatDetect()
+	{
+		beat = new BeatDetect();
+
+		return beat;
 	}
 }
