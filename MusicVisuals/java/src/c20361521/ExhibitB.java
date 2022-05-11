@@ -46,8 +46,8 @@ public class ExhibitB extends Visual
     int nbMurs = 500;
     Mur[] murs;
     
-    // void setup()
-    // {
+    public void setup()
+    {
         //Un cube par bande de fréquence
         nbCubes = (int)(fft.specSize()*specHi);
         cubes = new Cube[nbCubes];
@@ -57,42 +57,42 @@ public class ExhibitB extends Visual
 
         //Créer tous les objets
         //Créer les objets cubes
-        for (int i = 0; i < nbCubes; i++) 
+        for (int z = 0; z < nbCubes; z++) 
         {
-            cubes[i] = new Cube(); 
+            cubes[z] = new Cube(); 
         }
         
         //Créer les objets murs
         //Murs gauches
-        for (int i = 0; i < nbMurs; i+=4) 
+        for (int a = 0; a < nbMurs; a += 4) 
         {
-            murs[i] = new Mur(0, height/2, 10, height); 
+            murs[a] = new Mur(0, mv.height/2, 10, mv.height); 
         }
         
         //Murs droits
-        for (int i = 1; i < nbMurs; i+=4) 
+        for (int b = 1; b < nbMurs; b += 4) 
         {
-            murs[i] = new Mur(width, height/2, 10, height); 
+            murs[b] = new Mur(mv.width, mv.height/2, 10, mv.height); 
         }
         
         //Murs bas
-        for (int i = 2; i < nbMurs; i+=4) 
+        for (int c = 2; c < nbMurs; c += 4) 
         {
-            murs[i] = new Mur(width/2, height, width, 10); 
+            murs[c] = new Mur(mv.width/2, mv.height, mv.width, 10); 
         }
         
         //Murs haut
-        for (int i = 3; i < nbMurs; i+=4) 
+        for (int d = 3; d < nbMurs; d += 4) 
         {
-            murs[i] = new Mur(width/2, 0, width, 10); 
+            murs[d] = new Mur(mv.width/2, 0, mv.width, 10); 
         }
-
-    // } // end setup()
+    } // end setup()
     
-    // void draw()
-    // {
+    void render()
+    {
         //Faire avancer la chanson. On draw() pour chaque "frame" de la chanson...
-        fft.forward(ap.mix);
+        // fft.forward(ab.mix);
+        fft.forward(ab);
         
         //Calcul des "scores" (puissance) pour trois catégories de son
         //D'abord, sauvgarder les anciennes valeurs
@@ -106,31 +106,34 @@ public class ExhibitB extends Visual
         scoreHi = 0;
         
         //Calculer les nouveaux "scores"
-        for(int i = 0; i < fft.specSize()*specLow; i++)
+        for(int e = 0; e < fft.specSize()*specLow; e++)
         {
-            scoreLow += fft.getBand(i);
+            scoreLow += fft.getBand(e);
         }
         
-        for(int i = (int)(fft.specSize()*specLow); i < fft.specSize()*specMid; i++)
+        for(int f = (int)(fft.specSize()*specLow); f < fft.specSize()*specMid; f++)
         {
-            scoreMid += fft.getBand(i);
+            scoreMid += fft.getBand(f);
         }
         
-        for(int i = (int)(fft.specSize()*specMid); i < fft.specSize()*specHi; i++)
+        for(int g = (int)(fft.specSize()*specMid); g < fft.specSize()*specHi; g++)
         {
-            scoreHi += fft.getBand(i);
+            scoreHi += fft.getBand(g);
         }
         
         //Faire ralentir la descente.
-        if (oldScoreLow > scoreLow) {
+        if (oldScoreLow > scoreLow) 
+        {
             scoreLow = oldScoreLow - scoreDecreaseRate;
         }
         
-        if (oldScoreMid > scoreMid) {
+        if (oldScoreMid > scoreMid) 
+        {
             scoreMid = oldScoreMid - scoreDecreaseRate;
         }
         
-        if (oldScoreHi > scoreHi) {
+        if (oldScoreHi > scoreHi) 
+        {
             scoreHi = oldScoreHi - scoreDecreaseRate;
         }
         
@@ -142,14 +145,14 @@ public class ExhibitB extends Visual
         // background(scoreLow/100, scoreMid/100, scoreHi/100);
         
         //Cube pour chaque bande de fréquence
-        for(int i = 0; i < nbCubes; i++)
+        for(int h = 0; h < nbCubes; h++)
         {
             //Valeur de la bande de fréquence
-            float bandValue = fft.getBand(i);
+            float bandValue = fft.getBand(h);
             
             //La couleur est représentée ainsi: rouge pour les basses, vert pour les sons moyens et bleu pour les hautes. 
             //L'opacité est déterminée par le volume de la bande et le volume global.
-            cubes[i].display(scoreLow, scoreMid, scoreHi, bandValue, scoreGlobal);
+            cubes[h].display(scoreLow, scoreMid, scoreHi, bandValue, scoreGlobal);
         }
         
         //Murs lignes, ici il faut garder la valeur de la bande précédent et la suivante pour les connecter ensemble
@@ -162,35 +165,35 @@ public class ExhibitB extends Visual
         float heightMult = 2;
         
         //Pour chaque bande
-        for(int i = 1; i < fft.specSize(); i++)
+        for(int j = 1; j < fft.specSize(); j++)
         {
             //Valeur de la bande de fréquence, on multiplie les bandes plus loins pour qu'elles soient plus visibles.
-            float bandValue = fft.getBand(i)*(1 + (i/50));
+            float bandValue = fft.getBand(j)*(1 + (j/50));
             
             //Selection de la couleur en fonction des forces des différents types de sons
-            stroke(100+scoreLow, 100+scoreMid, 100+scoreHi, 255-i);
-            strokeWeight(1 + (scoreGlobal/100));
+            mv.stroke(100 + scoreLow, 100 + scoreMid, 100 + scoreHi, 255 - j);
+            mv.strokeWeight(1 + (scoreGlobal/100));
             
             //ligne inferieure gauche
-            line(0, height-(previousBandValue*heightMult), dist*(i-1), 0, height-(bandValue*heightMult), dist*i);
-            line((previousBandValue*heightMult), height, dist*(i-1), (bandValue*heightMult), height, dist*i);
-            line(0, height-(previousBandValue*heightMult), dist*(i-1), (bandValue*heightMult), height, dist*i);
+            mv.line(0, mv.height-(previousBandValue*heightMult), dist*(j-1), 0, mv.height-(bandValue*heightMult), dist*j);
+            mv.line((previousBandValue*heightMult), mv.height, dist*(j-1), (bandValue*heightMult), mv.height, dist*j);
+            mv.line(0, mv.height-(previousBandValue*heightMult), dist*(j-1), (bandValue*heightMult), mv.height, dist*j);
             
             //ligne superieure gauche
-            line(0, (previousBandValue*heightMult), dist*(i-1), 0, (bandValue*heightMult), dist*i);
-            line((previousBandValue*heightMult), 0, dist*(i-1), (bandValue*heightMult), 0, dist*i);
-            line(0, (previousBandValue*heightMult), dist*(i-1), (bandValue*heightMult), 0, dist*i);
+            mv.line(0, (previousBandValue*heightMult), dist*(j-1), 0, (bandValue*heightMult), dist*j);
+            mv.line((previousBandValue*heightMult), 0, dist*(j-1), (bandValue*heightMult), 0, dist*j);
+            mv.line(0, (previousBandValue*heightMult), dist*(j-1), (bandValue*heightMult), 0, dist*j);
             
             //ligne inferieure droite
-            line(width, height-(previousBandValue*heightMult), dist*(i-1), width, height-(bandValue*heightMult), dist*i);
-            line(width-(previousBandValue*heightMult), height, dist*(i-1), width-(bandValue*heightMult), height, dist*i);
-            line(width, height-(previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), height, dist*i);
+            mv.line(mv.width, height-(previousBandValue*heightMult), dist*(j-1), mv.width, height-(bandValue*heightMult), dist*j);
+            mv.line(mv.width-(previousBandValue*heightMult), height, dist*(j-1), mv.width-(bandValue*heightMult), height, dist*j);
+            mv.line(mv.width, height-(previousBandValue*heightMult), dist*(j-1), mv.width-(bandValue*heightMult), height, dist*j);
             
             //ligne superieure droite
-            line(width, (previousBandValue*heightMult), dist*(i-1), width, (bandValue*heightMult), dist*i);
-            line(width-(previousBandValue*heightMult), 0, dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
-            line(width, (previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
-            
+            mv.line(mv.width, (previousBandValue*heightMult), dist*(j-1), mv.width, (bandValue*heightMult), dist*j);
+            mv.line(mv.width-(previousBandValue*heightMult), 0, dist*(j-1), mv.width-(bandValue*heightMult), 0, dist*j);
+            mv.line(mv.width, (previousBandValue*heightMult), dist*(j-1), mv.width-(bandValue*heightMult), 0, dist*j);
+
             //Sauvegarder la valeur pour le prochain tour de boucle
             previousBandValue = bandValue;
         }
@@ -202,10 +205,10 @@ public class ExhibitB extends Visual
             float intensity = fft.getBand(i%((int)(fft.specSize()*specHi)));
             murs[i].display(scoreLow, scoreMid, scoreHi, intensity, scoreGlobal);
         }
-    // } // end draw()
+    } // end draw()
 
     //Classe pour les cubes qui flottent dans l'espace
-    class Cube 
+    public class Cube 
     {
         //Position Z de "spawn" et position Z maximale
         float startingZ = -10000;
@@ -235,13 +238,13 @@ public class ExhibitB extends Visual
             // color displayColor = color(scoreLow*0.67, scoreMid*0.67, scoreHi*0.67, intensity*5);
             // fill(displayColor, 255);
             
-            fill(255); // Alternative?
+            mv.fill(255); // Alternative?
 
             //Couleur lignes, elles disparaissent avec l'intensité individuelle du cube
             // color strokeColor = color(255, 150-(20*intensity));
             // stroke(strokeColor);
-            stroke(255);
-            strokeWeight(1 + (scoreGlobal/300));
+            mv.stroke(255);
+            mv.strokeWeight(1 + (scoreGlobal/300));
             
             //Création d'une matrice de transformation pour effectuer des rotations, agrandissements
             pushMatrix();
@@ -279,7 +282,7 @@ public class ExhibitB extends Visual
 
 
     //Classe pour afficher les lignes sur les cotés
-    class Mur 
+    public class Mur 
     {
         //Position minimale et maximale Z
         float startingZ = -10000;
@@ -290,7 +293,8 @@ public class ExhibitB extends Visual
         float sizeX, sizeY;
         
         //Constructeur
-        Mur(float x, float y, float sizeX, float sizeY) {
+        Mur(float x, float y, float sizeX, float sizeY) 
+        {
             //Faire apparaitre la ligne à l'endroit spécifié
             this.x = x;
             this.y = y;
@@ -303,7 +307,8 @@ public class ExhibitB extends Visual
         }
         
         //Fonction d'affichage
-        void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal) {
+        void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal) 
+        {
             //Couleur déterminée par les sons bas, moyens et élevé
             //Opacité déterminé par le volume global
             // color displayColor = color(scoreLow*0.67, scoreMid*0.67, scoreHi*0.67, scoreGlobal);
@@ -311,7 +316,7 @@ public class ExhibitB extends Visual
             //Faire disparaitre les lignes au loin pour donner une illusion de brouillard
             // fill(displayColor, ((scoreGlobal-5)/1000)*(255+(z/25)));
             
-            fill(255);  // Alternative?
+            mv.fill(255);  // Alternative?
 
             noStroke();
             
@@ -356,5 +361,4 @@ public class ExhibitB extends Visual
             }
         }
     } // end Mur class
-
 } // end Main class
