@@ -1,3 +1,6 @@
+// Needs colour
+// Needs orbital speed changed to match music
+
 package c20361521;
 
 import processing.core.PApplet;
@@ -17,7 +20,7 @@ public class solar extends PApplet{
        background(0);
        orbiter = new Planet(50, 0, 0);
        //second arrguments is for levels (of moons)
-       orbiter.spawnMoons(5, 0);
+       orbiter.spawnMoons(5, 1);
        
     }
 
@@ -48,7 +51,8 @@ class Planet extends PApplet
         distance = d;
         //so not on same line
         angle = random(TWO_PI);
-        orbitSpeed = random(0.1, 0.3);
+        //had to type cast these, was reading it as double double, what a dummy
+        orbitSpeed =  random((float)0.1,(float) 0.3);
     }
 
     void orbit()
@@ -70,17 +74,25 @@ class Planet extends PApplet
         planets = new Planet[total];
         for (int i = 0; i < planets.length; i++)
         {
-            float r = (float) (radius * 0.5);
+            //float r = (float) (radius * 0.5);
+            float r = (float) radius/(level * 2);
             float d = (float) random (75, 300);
+
             //Code needs to be changed here to match speeds to music
             //probably need to divide it to keep it slow enough
-            float o = (float) random(0.02, 0.1);
-            planets[i] = new Planet(r, d, o);
+            //minus one value to go one direction, plus another value to go other way
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            float o =  random((float)-0.1, (float) 0.1);
+
+            planets[i] = new Planet(r, d/level, o);
+
             //want planets to spawn own moons
             //infinate loop without levels
-            //currently distances and sizes would be all over the place
             if (level < 2)
             {
+                //number of moons
+                //might need to change to int
+                float num = (random ((float) 0, (float) 4));
                 planets[i].spawnMoons(5, level + 1);
             }
             
