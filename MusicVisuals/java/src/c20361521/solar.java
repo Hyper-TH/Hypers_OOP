@@ -16,8 +16,9 @@ public class Solar extends PApplet{
     {
         //rendering using processing 3D rendering
         size(600, 600, P3D);
-        camera((float) 70.0, (float) 35.0, (float) 120.0, (float) 50.0, (float) 50.0, (float) 0.0, 
-        (float) 0.0, (float) 1.0, (float) 0.0);
+        //Idk how to use camera :(
+        // camera((float) 70.0, (float) 35.0, (float) 120.0, (float) 50.0, (float) 50.0, (float) 0.0, 
+        // (float) 0.0, (float) 1.0, (float) 0.0);
     }
 
     public void setup() 
@@ -29,6 +30,7 @@ public class Solar extends PApplet{
        
     }
 
+    //we'll move these to myVisuals at some point :tails
     public void draw()
     {
         lights();
@@ -61,7 +63,7 @@ class Planet extends PApplet
         // Object v = processing.core.PVector.random3D();
         radius = r;
         distance = d;
-        ((PVector) v).mult(distance);   //scale  vector by distance
+        v.mult(distance);   //scale  vector by distance
         //so not on same line
         angle = random(TWO_PI);
         //had to type cast these, was reading it as double double, what a dummy
@@ -122,12 +124,13 @@ class Planet extends PApplet
         noStroke(); //removes polygons
         fill(255);  //white
         fill(255, 100);
-        // rotate(angle);
 
         //picking a vector that points straight out
         PVector v2 = new PVector(1, 0, 1);
         //p is cross product of v, the vector that's actually coming out from main orbit object
-        PVector p = v.cross(_____);
+        PVector p = v.cross(v2);
+        //rotate from the x, y and z by angle
+        rotate(angle, p.x, p.y, p.z);
 
         //translate(distance, 0); //old line for 2d
         translate(v.x, v.y, v.z);
