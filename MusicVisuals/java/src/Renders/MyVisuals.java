@@ -7,7 +7,7 @@ public class MyVisuals extends Visual
     ExhibitA eA;
     ExhibitB eB;
     ExhibitC eC;
-    // Butterfly bb;
+    Butterfly bb;
 
     float[] lerpedBuffer;
 
@@ -38,7 +38,7 @@ public class MyVisuals extends Visual
         eA = new ExhibitA(this);
         eB = new ExhibitB(this);
         eC = new ExhibitC(this);
-        // bb = new Butterfly(this);
+        bb = new Butterfly();
         // abv = new AudioBandsVisual(this);
       
     }
@@ -90,8 +90,8 @@ public class MyVisuals extends Visual
         lerpedAverage = getSmoothedAmplitude(); // NOT AN ARRAY
 
         // eA.render();
-        eB.render();
-        // eC.render();
-        // bb.render();
+        // eB.render();
+        eC.draw();
+        // bb.draw();     
     }
 }

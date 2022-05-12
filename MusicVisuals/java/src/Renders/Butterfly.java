@@ -1,32 +1,30 @@
 package Renders;
 
+import ie.tudublin.*;
 import processing.core.PApplet;
 //polar
 
-public class Butterfly extends PApplet
+public class Butterfly extends Visual
 {
-    
+
+    public Butterfly()
+    {
+
+    }
+
     //for similar noises
     float yoff = 0;
 
-    // public void settings()
-    // {
-    //     // size(400, 400);
-    //     size(1000, 1000, P3D);
-    // }
-
-    // public void setup()
-    // {
-    //     color(HSB);
-    //     background(51);
-    //     smooth();
-    // }
-    
-    MyVisuals mv;
-
-    public Butterfly(MyVisuals mv)
+    public void settings()
     {
-        this.mv = mv;
+        size(400, 400, P3D);
+    }
+
+    public void setup()
+    {
+        color(HSB);
+        background(51);
+        smooth();
     }
 
     public void render()
@@ -39,7 +37,7 @@ public class Butterfly extends PApplet
 
         float angle;
         float radius = 100;
-        mv.stroke(255);
+        stroke(255);
         fill(255, 50);
         strokeWeight(1);
 
@@ -50,49 +48,54 @@ public class Butterfly extends PApplet
         float dx = (float) 0.5;
 
         //sound varibale should be between 0 and 1
-        float xoff = 0;
+        // float xoff = 0;
+        float xoff = getSmoothedAmplitude();
 
         // beginShape() begins recording vertices for a shape
-        beginShape();
-        
-        for(angle = -PI/2; angle <= PI/2; angle += delta)
+        for (int i = 0; i < ab.size(); i++)
         {
-            float no = noise(xoff, yoff);
-            //sin(2 * angle) rose maths
-            radius = sin(2 * angle) * PApplet.map(no, 0, 1, 50, 100);
-            float xAx = sin(frameCount * flap) * radius * cos(angle);
-            float yAx = sin(yoff) * radius * sin(angle);
+            float yoff = ab.get(i);
             
-            //perlin noise values --change for audio
-            xoff += dx;
+            for(angle = -PI/2; angle <= PI/2; angle += delta)
+            {
+                float no = noise(xoff, yoff);
+                //sin(2 * angle) rose maths
+                radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
+                float xAx = sin(frameCount * flap) * radius * cos(angle);
+                float yAx = sin(yoff) * radius * sin(angle);
+                
+                //perlin noise values --change for audio
+                xoff += dx;
 
-            //make a continuous shape 
-            //point(xAx, yAx);
-            vertex(xAx, yAx);
-            
+                //make a continuous shape 
+                //point(xAx, yAx);
+                vertex(xAx, yAx);
+                
+            }
         }
-        endShape();
-
-        beginShape();
+        
         //Right side
         xoff = 0;
-        //angle > 3*PI to go in opposite direction
-        for(angle = PI/2; angle <= 3*PI/2; angle += delta)
+        for (int i = 0; i < ab.size(); i++)
         {
-            float no = noise(xoff, yoff);
-            radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
-            float xAx = sin(frameCount * flap) * radius * cos(angle);
-            float yAx = sin(yoff) * radius * sin(angle);
+            float yoff = ab.get(i);
             
-            //perlin noise values --change for audio
-            xoff -= dx;
-
-            //make a continuous shape 
-            vertex(xAx, yAx);
-        }
+            for(angle = PI/2; angle <= 3*PI/2; angle += delta)
+            {
+                float no = noise(xoff, yoff);
+                radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
+                float xAx = sin(frameCount * flap) * radius * cos(angle);
+                float yAx = sin(yoff) * radius * sin(angle);
+                
+                //perlin noise values --change for audio
+                xoff -= dx;
+                
+                //make a continuous shape 
+                vertex(xAx, yAx);
+            }
         // When endshape() is called, all of image data defined since the previous call to beginShape() is written into the image buffer.
-        endShape();
-
+        }        //angle > 3*PI to go in opposite direction
+        
         yoff += 0.01;
     }
 }

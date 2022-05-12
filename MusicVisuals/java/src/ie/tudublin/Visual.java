@@ -52,7 +52,6 @@ public abstract class Visual extends PApplet
 			throw new VisualException("You must call startListening or loadAudio before calling fft");
 		}
 	}
-
 	
 	public void calculateAverageAmplitude()
 	{
