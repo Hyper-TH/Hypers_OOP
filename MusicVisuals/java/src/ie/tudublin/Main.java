@@ -33,12 +33,19 @@ public class Main
 
     }
 
-	public static void Butterfly()
+	public static void solar()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new Butterfly());
+        processing.core.PApplet.runSketch( a, new solar());
 
     }
+
+	//public static void Butterfly()
+	//{
+	//	String[] a = {"MAIN"};
+    //    processing.core.PApplet.runSketch( a, new Butterfly());
+
+    //}
 
 
 	// public static void strings()
@@ -50,7 +57,8 @@ public class Main
 
 	public static void main(String[] args)
     {
-        RoughRenders();
+        //RoughRenders();
 		// Butt();
+		solar();
     }
 } 
