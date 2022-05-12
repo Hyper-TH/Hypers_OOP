@@ -1,9 +1,9 @@
-package example;
+package c20361521;
 
 import ie.tudublin.Visual;
 import ie.tudublin.VisualException;
 
-public class RotatingAudioBands extends Visual {
+public class RotatingBands extends Visual {
 
 
     public void settings()

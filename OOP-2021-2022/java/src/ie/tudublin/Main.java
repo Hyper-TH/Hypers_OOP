@@ -114,7 +114,7 @@ public class Main
     {
         // helloProcessing2();
         // colorfulLife();
-        life();
+        // life();
         // life2();
         // life3();
         // bugZap();
@@ -123,7 +123,7 @@ public class Main
         // arrays1();
         // arrays();
         // audio1();
-        // audio2();
+        audio2();
         // audio3();
     }
 }

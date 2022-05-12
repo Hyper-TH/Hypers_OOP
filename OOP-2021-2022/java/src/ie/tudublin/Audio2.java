@@ -103,6 +103,8 @@ public class Audio2 extends PApplet {
                 }        
                 break;
             }
+
+            // sides
             case 2:
             {
                 for (int i = 0; i < ab.size(); i++) {
@@ -110,9 +112,17 @@ public class Audio2 extends PApplet {
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
                     lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);        
+                    
+                    // Left
                     line(0, i, lerpedBuffer[i] * halfHeight * 4, i);
+                    
+                    // Right
                     line(width, i, width - (lerpedBuffer[i] * halfHeight * 4), i);
+                    
+                    // Up
                     line(i, 0, i, lerpedBuffer[i] * halfHeight * 4);
+                    
+                    // Down
                     line(i, height, i, height - (lerpedBuffer[i] * halfHeight * 4));
                 }        
                 break;
@@ -139,6 +149,8 @@ public class Audio2 extends PApplet {
                 rect(width / 2, height / 2, size, size);
                 break;
             }
+
+            // GoodTrip
             case 5:
             {
                 float r = 1f;
@@ -161,6 +173,8 @@ public class Audio2 extends PApplet {
                 // ??
                 break;
             }
+
+            // cube
             case 6:
             {
                 lights();

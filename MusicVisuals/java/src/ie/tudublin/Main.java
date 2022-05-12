@@ -1,21 +1,64 @@
 package ie.tudublin;
 
-import example.CubeVisual;
-import example.MyVisual;
-import example.RotatingAudioBands;
+import Renders.MyVisuals;
+import c20361521.*;
+// import Renders.*;
 
 public class Main
 {	
 
-	public void startUI()
+	// public void startUI()
+	// {
+	// 	String[] a = {"MAIN"};
+    //     processing.core.PApplet.runSketch( a, new MyVisuals());		
+	// }
+
+	// public static void main(String[] args)5
+	// {
+	// 	Main main = new Main();
+	// 	main.startUI();			
+	// }
+
+	public static void MyVisuals()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new MyVisual());		
-	}
+        processing.core.PApplet.runSketch( a, new MyVisuals());
+
+    }
+
+	public static void RoughRenders()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new RoughRenders());
+
+    }
+
+	public static void Solar()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Solar());
+
+    }
+
+	//public static void Butterfly()
+	//{
+	//	String[] a = {"MAIN"};
+    //    processing.core.PApplet.runSketch( a, new Butterfly());
+
+    //}
+
+
+	// public static void strings()
+	// {
+	// 	String[] a = {"MAIN"};
+    // 	processing.core.PApplet.runSketch( a, new strings());
+
+    // }
 
 	public static void main(String[] args)
-	{
-		Main main = new Main();
-		main.startUI();			
-	}
-}
+    {
+        //RoughRenders();
+		// Butt();
+		Solar();
+    }
+} 
