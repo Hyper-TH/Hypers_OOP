@@ -12,7 +12,8 @@ public class solar extends PApplet{
 
     public void settings()
     {
-        size(600, 600);
+        //rendering using processing 3D rendering
+        size(600, 600, P3D);
     }
 
     public void setup() 
@@ -26,6 +27,7 @@ public class solar extends PApplet{
 
     public void draw()
     {
+        lights();
         translate(width/2, height/2);
         orbiter.render();
         orbiter.orbit();
@@ -76,7 +78,10 @@ class Planet extends PApplet
         {
             //float r = (float) (radius * 0.5);
             float r = (float) radius/(level * 2);
-            float d = (float) random (75, 300);
+
+
+            //float d = (float) random (75, 300); //old line
+            float d = random(radius + r);
 
             //Code needs to be changed here to match speeds to music
             //probably need to divide it to keep it slow enough
@@ -84,7 +89,7 @@ class Planet extends PApplet
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             float o =  random((float)-0.1, (float) 0.1);
 
-            planets[i] = new Planet(r, d/level, o);
+            planets[i] = new Planet(r, d, o);
 
             //want planets to spawn own moons
             //infinate loop without levels
@@ -103,10 +108,13 @@ class Planet extends PApplet
     {  
         //whatever 
         pushMatrix();
+        noStroke(); //removes polygons
+        fill(255);  //white
         fill(255, 100);
         rotate(angle);
         translate(distance, 0);
-        ellipse(0, 0, radius*2, radius*2);
+        sphere(radius); //for 3d
+        //ellipse(0, 0, radius*2, radius*2);    //for 2d
         if(planets != null)
         {
             for(int i = 0; i < planets.length; i++)
