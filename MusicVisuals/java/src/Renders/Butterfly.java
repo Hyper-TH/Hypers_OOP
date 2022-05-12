@@ -1,23 +1,21 @@
 package Renders;
 
-import ie.tudublin.*;
+// package ie.tudublin;
+
 import processing.core.PApplet;
 //polar
 
-public class Butterfly extends Visual
-{
+//this version actually kinda works
+//it static though lol
 
-    public Butterfly()
-    {
-
-    }
-
+public class Butterfly extends PApplet{
+    
     //for similar noises
     float yoff = 0;
 
     public void settings()
     {
-        size(400, 400, P3D);
+        size(400, 400);
     }
 
     public void setup()
@@ -27,7 +25,7 @@ public class Butterfly extends Visual
         smooth();
     }
 
-    public void render()
+    public void draw()
     {
         //put in the center
         translate(width/2, height/2);
@@ -48,54 +46,49 @@ public class Butterfly extends Visual
         float dx = (float) 0.5;
 
         //sound varibale should be between 0 and 1
-        // float xoff = 0;
-        float xoff = getSmoothedAmplitude();
+        float xoff = 0;
 
         // beginShape() begins recording vertices for a shape
-        for (int i = 0; i < ab.size(); i++)
-        {
-            float yoff = ab.get(i);
-            
-            for(angle = -PI/2; angle <= PI/2; angle += delta)
-            {
-                float no = noise(xoff, yoff);
-                //sin(2 * angle) rose maths
-                radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
-                float xAx = sin(frameCount * flap) * radius * cos(angle);
-                float yAx = sin(yoff) * radius * sin(angle);
-                
-                //perlin noise values --change for audio
-                xoff += dx;
-
-                //make a continuous shape 
-                //point(xAx, yAx);
-                vertex(xAx, yAx);
-                
-            }
-        }
+        beginShape();
         
+        for(angle = -PI/2; angle <= PI/2; angle += delta)
+        {
+            float no = noise(xoff, yoff);
+            //sin(2 * angle) rose maths
+            radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
+            float xAx = sin(frameCount * flap) * radius * cos(angle);
+            float yAx = sin(yoff) * radius * sin(angle);
+            
+            //perlin noise values --change for audio
+            xoff += dx;
+
+            //make a continuous shape 
+            //point(xAx, yAx);
+            vertex(xAx, yAx);
+            
+        }
+        endShape();
+
+        beginShape();
         //Right side
         xoff = 0;
-        for (int i = 0; i < ab.size(); i++)
+        //angle > 3*PI to go in opposite direction
+        for(angle = PI/2; angle <= 3*PI/2; angle += delta)
         {
-            float yoff = ab.get(i);
+            float no = noise(xoff, yoff);
+            radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
+            float xAx = sin(frameCount * flap) * radius * cos(angle);
+            float yAx = sin(yoff) * radius * sin(angle);
             
-            for(angle = PI/2; angle <= 3*PI/2; angle += delta)
-            {
-                float no = noise(xoff, yoff);
-                radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
-                float xAx = sin(frameCount * flap) * radius * cos(angle);
-                float yAx = sin(yoff) * radius * sin(angle);
-                
-                //perlin noise values --change for audio
-                xoff -= dx;
-                
-                //make a continuous shape 
-                vertex(xAx, yAx);
-            }
+            //perlin noise values --change for audio
+            xoff -= dx;
+
+            //make a continuous shape 
+            vertex(xAx, yAx);
+        }
         // When endshape() is called, all of image data defined since the previous call to beginShape() is written into the image buffer.
-        }        //angle > 3*PI to go in opposite direction
-        
+        endShape();
+
         yoff += 0.01;
     }
 }
