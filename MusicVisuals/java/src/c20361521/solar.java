@@ -16,6 +16,8 @@ public class Solar extends PApplet{
     {
         //rendering using processing 3D rendering
         size(600, 600, P3D);
+        camera((float) 70.0, (float) 35.0, (float) 120.0, (float) 50.0, (float) 50.0, (float) 0.0, 
+        (float) 0.0, (float) 1.0, (float) 0.0);
     }
 
     public void setup() 
@@ -30,7 +32,7 @@ public class Solar extends PApplet{
     public void draw()
     {
         lights();
-        translate(width/2, height/2);
+        //translate(width/2, height/2);     //moving the planets without camera
         orbiter.render();
         orbiter.orbit();
     }
@@ -53,13 +55,13 @@ class Planet extends PApplet
     Planet (float r, float d, float o)
     {
         //in java we gotta initalise new vectors too :(
-        Vector <Float> PVector = new Vector<Float>();
+        Vector <Float> v = new Vector<Float>();
         
         //random 3d vector pointing in space of length 1
         // Object v = processing.core.PVector.random3D();
         radius = r;
         distance = d;
-        ((processing.core.PVector) v).mult(distance);   //scale  vector by distance
+        ((PVector) v).mult(distance);   //scale  vector by distance
         //so not on same line
         angle = random(TWO_PI);
         //had to type cast these, was reading it as double double, what a dummy
@@ -120,7 +122,13 @@ class Planet extends PApplet
         noStroke(); //removes polygons
         fill(255);  //white
         fill(255, 100);
-        //rotate(angle);
+        // rotate(angle);
+
+        //picking a vector that points straight out
+        PVector v2 = new PVector(1, 0, 1);
+        //p is cross product of v, the vector that's actually coming out from main orbit object
+        PVector p = v.cross(_____);
+
         //translate(distance, 0); //old line for 2d
         translate(v.x, v.y, v.z);
         sphere(radius); //for 3d
