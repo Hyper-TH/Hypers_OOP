@@ -9,7 +9,7 @@ public class Rain extends PApplet
 	final int DLENGTH = 100;
     //ArrayList<rain> drops = new ArrayList<rain>();
     Drops[] drops = new Drops[DLENGTH];
-	Star[] stars = new Star[SLENGTH];
+	//Star[] stars = new Star[SLENGTH];
 
     public void settings() 
     {
@@ -26,10 +26,10 @@ public class Rain extends PApplet
             drops[i] = new Drops();
 			System.out.println("INITIALIZED");
         }
-		for(int i = 0; i < SLENGTH; i++)
-		{
-			stars[i] = new Star();
-		}
+		//for(int i = 0; i < SLENGTH; i++)
+		//{
+		//	stars[i] = new Star();
+		//}
     }
 
     public void draw()
@@ -40,11 +40,11 @@ public class Rain extends PApplet
             drops[i].render(this);
             drops[i].fall(this);
         }
-		for(int i = 0; i < SLENGTH; i++)
-		{
-			stars[i].render(this);
-			stars[i].update(this);
-		}
+		//for(int i = 0; i < SLENGTH; i++)
+		//{
+		//	stars[i].render(this);
+		//	stars[i].update(this);
+		//}
     }
 
 }

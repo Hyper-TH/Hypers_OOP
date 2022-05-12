@@ -33,7 +33,7 @@ public class Main
 
     }
 
-	public static void Butt()
+	public static void Butterfly()
 	{
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Butterfly());
