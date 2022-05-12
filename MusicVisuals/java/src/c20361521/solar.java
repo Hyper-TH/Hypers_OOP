@@ -3,6 +3,8 @@
 
 package c20361521;
 
+import java.util.Vector;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -21,7 +23,7 @@ public class solar extends PApplet{
        background(0);
        orbiter = new Planet(50, 0, 0);
        //second arrguments is for levels (of moons)
-       orbiter.spawnMoons(5, 1);
+       orbiter.spawnMoons(1, 1);
        
     }
 
@@ -49,8 +51,14 @@ class Planet extends PApplet
 
     Planet (float r, float d, float o)
     {
+        //in java we gotta initalise new vectors too :(
+        Vector <Float> PVector = new Vector<Float>();
+        
+        //random 3d vector pointing in space of length 1
+        Object v = processing.core.PVector.random3D();
         radius = r;
         distance = d;
+        ((processing.core.PVector) v).mult(distance);   //scale  vector by distance
         //so not on same line
         angle = random(TWO_PI);
         //had to type cast these, was reading it as double double, what a dummy
@@ -97,7 +105,7 @@ class Planet extends PApplet
             {
                 //number of moons
                 //might need to change to int
-                float num = (random ((float) 0, (float) 4));
+                float num = 1; //(random ((float) 0, (float) 4));
                 planets[i].spawnMoons(5, level + 1);
             }
             
@@ -111,8 +119,9 @@ class Planet extends PApplet
         noStroke(); //removes polygons
         fill(255);  //white
         fill(255, 100);
-        rotate(angle);
-        translate(distance, 0);
+        //rotate(angle);
+        //translate(distance, 0); //old line for 2d
+        translate(v.x, v.y, v.z);
         sphere(radius); //for 3d
         //ellipse(0, 0, radius*2, radius*2);    //for 2d
         if(planets != null)
