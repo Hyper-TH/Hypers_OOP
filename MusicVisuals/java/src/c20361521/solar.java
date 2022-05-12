@@ -8,7 +8,7 @@ import java.util.Vector;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class solar extends PApplet{
+public class Solar extends PApplet{
 
     Planet orbiter;
 
@@ -48,6 +48,7 @@ class Planet extends PApplet
 
     float orbitSpeed;
 
+    Object v = processing.core.PVector.random3D();
 
     Planet (float r, float d, float o)
     {
@@ -55,7 +56,7 @@ class Planet extends PApplet
         Vector <Float> PVector = new Vector<Float>();
         
         //random 3d vector pointing in space of length 1
-        Object v = processing.core.PVector.random3D();
+        // Object v = processing.core.PVector.random3D();
         radius = r;
         distance = d;
         ((processing.core.PVector) v).mult(distance);   //scale  vector by distance

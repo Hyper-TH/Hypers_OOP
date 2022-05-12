@@ -33,10 +33,10 @@ public class Main
 
     }
 
-	public static void solar()
+	public static void Solar()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new solar());
+        processing.core.PApplet.runSketch( a, new Solar());
 
     }
 
@@ -59,6 +59,6 @@ public class Main
     {
         //RoughRenders();
 		// Butt();
-		solar();
+		Solar();
     }
 } 
