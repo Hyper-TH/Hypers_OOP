@@ -1,10 +1,10 @@
-package c20361521;
+package Renders;
 
 // import java.util.*;
 import processing.core.PApplet;
 // import java.io.*;
 
-public class Star extends PApplet{
+public class Stars extends PApplet{
     float x;
     float y;
     float z;
@@ -15,7 +15,7 @@ public class Star extends PApplet{
 
     
 
-    public Star() {
+    public Stars() {
         x = random(-width, width);
         y = random(-height, height);
         z = random(0, width);

@@ -1,4 +1,4 @@
-package c20361521;
+package Renders;
 
 import processing.core.PApplet;
 //polar
@@ -10,7 +10,8 @@ public class Butterfly extends PApplet{
 
     public void settings()
     {
-        size(400, 400);
+        // size(400, 400);
+        size(1000, 1000, P3D);
     }
 
     public void setup()
@@ -20,7 +21,7 @@ public class Butterfly extends PApplet{
         smooth();
     }
 
-    public void draw()
+    public void render()
     {
         //put in the center
         translate(width/2, height/2);

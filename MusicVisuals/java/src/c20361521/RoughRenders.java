@@ -10,7 +10,7 @@ import ie.tudublin.*;
 
 public class RoughRenders extends Visual {
 
-    //Rain1 rn;
+    // Rain1 rn;
     // Minim minim; // Connect to minim
     // AudioInput ai; // How to connect to mic
     // AudioPlayer ap;
@@ -21,7 +21,7 @@ public class RoughRenders extends Visual {
     public void settings() {
         //size(1000, 1000, P3D);
         // size(1024, 500);
-        fullScreen(P3D, SPAN);
+        size(1000, 1000, P3D);
         // fullScreen(P3D, SPAN); // Try this for full screen multiple monitor support :-) Be careful of exceptions!
         
     }
@@ -106,7 +106,6 @@ public class RoughRenders extends Visual {
         lerpedAverage = getSmoothedAmplitude(); // NOT AN ARRAY
         
         // lerpedBuffer = getSmoothedBands();
-        //rn.draw();
         
         switch (which)
         {
@@ -135,76 +134,8 @@ public class RoughRenders extends Visual {
                 break;
             }   
 
-            // Waveforms
-            case 1:
-            {
-                // Iterate over all the elements in the audio buffer
-                // for (int i = 0; i < ab.size(); i++) {
-                for (int i = 0; i < getAudioBuffer().size(); i++) {
-
-                    // // float c = map(i, 0, ab.size(), 0, 255);
-                    // float c = map(i, 0, getAudioBuffer().size(), 0, 255);
-                    // stroke(c, 255, 255);
-                    // // lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);        
-                    // lerpedBuffer[i] = lerp(lerpedBuffer[i], getAudioBuffer().size(), 0.1f);        
-                    // line(i, halfHeight - lerpedBuffer[i] * halfHeight * 4, i, halfHeight + lerpedBuffer[i] * halfHeight * 4);
-                
-                    // line(x1, y1, x2, y2)
-                    // line(i, height / 2, i, (height / 2) + (height / 2) * getAudioBuffer().get(i));
-
-                    float c = map(i, 0, getAudioBuffer().size(), 0, 255);
-                    stroke(c, 255, 255);
-                    lerpedBuffer[i] = lerp(lerpedBuffer[i], getAudioBuffer().get(i), 0.1f);
-        
-                          
-                    // line(i, halfHeight - lerpedBuffer[i] * halfHeight * 4, halfHeight + lerpedBuffer[i] * halfHeight * 4, i);
-                    line(i, height - lerpedBuffer[i] * height * 4, i, height + lerpedBuffer[i] * height * 4);
-                }
-
-                break;
-            }
-
-            // Side waveforms
-            case 2:
-            {
-                // for (int i = 0; i < ab.size(); i++) {
-                for (int i = 0; i < getAudioBuffer().size(); i++) {
-
-                    // // float c = map(i, 0, ab.size(), 0, 255);
-                    // float c = map(i, 0, getAudioBuffer().size(), 0, 255);
-                    // stroke(c, 255, 255);
-                    // // lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);        
-                    // lerpedBuffer[i] = lerp(lerpedBuffer[i], getAudioBuffer().size(), 0.1f);    
-
-                    float c = map(i, 0, getAudioBuffer().size(), 0, 255);
-                    stroke(c, 255, 255);
-                    lerpedBuffer[i] = lerp(lerpedBuffer[i], getAudioBuffer().get(i), 0.1f);
-
-                    line(0, i, lerpedBuffer[i] * (height / 2) * 4, i);
-                    
-                    line(width, i, width - (lerpedBuffer[i] * (height / 2) * 4), i);
-
-                    line(i, 0, i, lerpedBuffer[i] * (height / 2) * 4);
-                    
-                    line(i, height, i, height - (lerpedBuffer[i] * (height / 2) * 4));
-                }        
-                break;
-            }
-
-
             //  WORKING RENDERS START HERE
-            case 3:
-            {
-                float c = map(average, 0, 1, 0, 255);
-                stroke(c, 255, 255);        
-                strokeWeight(2);
-                noFill();
-                // See the difference lerping makes? It smooths out the jitteryness of average, so the visual looks smoother
-                //ellipse(width / 4, 100, 50 + average * 500, 50 + average * 500);
-                ellipse(width / 2, height / 2, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));                
-                break;
-            }
-
+            // 2D squares
             case 4:
             {
                 float c = map(average, 0, 1, 0, 255);

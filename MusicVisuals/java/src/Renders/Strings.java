@@ -1,13 +1,19 @@
-package c20361521;
+package Renders;
 
 import ie.tudublin.*;
 
 // import processing.core.PApplet;
-// import processing.core.PFont;
-import processing.core.*;
+import processing.core.PFont;
+// import processing.core.*;
 
-public class strings extends Visual
+public class Strings 
 {
+    MyVisuals mv;
+
+    public Strings(MyVisuals mv)
+    {
+        this.mv = mv;
+    }
 
     // An array of news headlines
     String[] headlines = 
@@ -26,33 +32,33 @@ public class strings extends Visual
     public void setup()
     {
         //Create the font by referencing the font name and the function createFont()
-        f = createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on 
+        f = mv.createFont("Arial", 16, true); // Arial, 16 point, anti-aliasing on 
        //  size(200, 200);
 
         // Initialize headline offscreen
-        x = width;
+        x = mv.width;
     }
 
-    void render() 
+    public void draw() 
     {
-        background(255);
-        fill(0);
+        mv.background(255);
+        mv.fill(0);
       
         // Display headline at x location
-        textFont(f, 16);
-        textAlign (LEFT);
+        mv.textFont(f, 16);
+        // mv.textAlign (LEFT);
       
         // A specific String from the array is displayed according to the value of the "index" variable.
-        text(headlines[index], x, height-20); 
+        mv.text(headlines[index], x, mv.height-20); 
       
         // Decrement x
         x = x - 3;
       
         // If x is less than the negative width, then it is off the screen
         // textWidth() is used to calculate the width of the current String.
-        float w = textWidth(headlines[index]); 
+        float w = mv.textWidth(headlines[index]); 
         if (x < -w) {
-          x = width;
+          x = mv.width;
           // index is incremented when the current String has left the screen in order to display a new String.
           index = (index + 1) % headlines.length;
         }

@@ -1,4 +1,4 @@
-package c20361521;
+package Renders;
 
 import ie.tudublin.*;
 import processing.core.PApplet;
@@ -49,13 +49,15 @@ public class ExhibitA extends Visual
             mv.line(i * 3, mv.height, i * 3, mv.height - (mv.lerpedBuffer[i] * (mv.height / 2) * 4));
         }    
 
+        /* START CIRCLE */
         float d = PApplet.map(average, 0, 1, 0, 255);
         mv.stroke(d, 255, 255);        
         mv.strokeWeight(5);
         mv.noFill();
-
+        
         // See the difference lerping makes? It smooths out the jitteryness of average, so the visual looks smoother
         //ellipse(width / 4, 100, 50 + average * 500, 50 + average * 500);
         mv.ellipse(mv.width / 2, mv.height / 2, 50 + (lerpedAverage * 5000), 50 + (lerpedAverage * 5000));  
+        /* END CIRCLE */
     }    
 }

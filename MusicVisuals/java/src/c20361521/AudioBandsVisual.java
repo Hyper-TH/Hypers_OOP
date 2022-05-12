@@ -1,5 +1,6 @@
 package c20361521;
 
+import Renders.MyVisuals;
 import processing.core.*;
 
 public class AudioBandsVisual {
