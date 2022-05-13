@@ -40,11 +40,11 @@ public class Rain extends PApplet
             drops[i].render(this);
             drops[i].fall(this);
         }
-		for(int i = 0; i < SLENGTH; i++)
-		{
-			stars[i].render(this);
-			stars[i].update(this);
-		}
+		//for(int i = 0; i < SLENGTH; i++)
+		//{
+		//	stars[i].render(this);
+		//	stars[i].update(this);
+		//}
     }
 
 }
