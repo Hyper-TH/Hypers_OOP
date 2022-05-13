@@ -26,10 +26,18 @@ public class Main
 
     }
 
+	public static void Rain()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Rain());
+
+    }
 
 	public static void main(String[] args)
     {
         // RoughRenders();
 		MyVisuals();
     }
+
+	
 } 

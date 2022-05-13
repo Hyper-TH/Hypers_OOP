@@ -7,7 +7,10 @@ public class MyVisuals extends Visual
     ExhibitA eA;
     ExhibitB eB;
     ExhibitC eC;
-    Butterfly bb;
+    ExhibitD eD;
+    ExhibitE eE;
+
+    int visual = 0;
 
     float[] lerpedBuffer;
 
@@ -38,7 +41,8 @@ public class MyVisuals extends Visual
         eA = new ExhibitA(this);
         eB = new ExhibitB(this);
         eC = new ExhibitC(this);
-        bb = new Butterfly();
+        eD = new ExhibitD(this);
+        eE = new ExhibitE(this);
         // abv = new AudioBandsVisual(this);
       
     }
@@ -78,20 +82,43 @@ public class MyVisuals extends Visual
 
         // Call this is you want to get the average amplitude
         calculateAverageAmplitude();     
-        
-        // Calculate the average of the buffer
-        for (int i = 0; i < getAudioBuffer().size(); i ++)
-        {
-            sum += abs(getAudioBuffer().get(i));
-        }
-        average = sum / getAudioBuffer().size();
+
         
         // Move lerpedAverage 10% closer to average every frame
         lerpedAverage = getSmoothedAmplitude(); // NOT AN ARRAY
+        
+        switch (visual)
+        {
+            case 0:
+            {
+                eA.render();
+                break;
+            }
 
-        // eA.render();
-        // eB.render();
-        eC.draw();
-        // bb.draw();     
+            case 1:
+            {
+                eB.render();
+                break;
+            }
+
+            case 2:
+            {
+                eC.render();
+                break;
+            }
+
+            case 3:
+            {
+                eD.render();
+                break;
+            }
+
+            case 4:
+            {
+                eE.render();
+                break;
+            }
+             
+        }
     }
 }
