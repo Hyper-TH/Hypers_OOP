@@ -1,6 +1,7 @@
 package Renders;
 
 import ie.tudublin.*;
+
 public class ExhibitC extends Visual
 {
     MyVisuals mv;
@@ -13,10 +14,10 @@ public class ExhibitC extends Visual
     //for similar noises
     float yoff = 0;
 
-    public void draw()
+    public void render()
     {
         /* START BUTTERFLY */
-        //put in the center
+        // put in the center
         mv.translate(mv.width/2, mv.height/2);
         
         //rotate(PI/ 2);
@@ -42,7 +43,7 @@ public class ExhibitC extends Visual
         // beginShape() begins recording vertices for a shape
         for (int i = 0; i < ab.size(); i++)
         {
-            mv.beginShape();
+            // mv.beginShape();
             
             float dx = ab.get(i);
             for(angle = -PI/2; angle <= PI/2; angle += delta)
@@ -61,12 +62,12 @@ public class ExhibitC extends Visual
                 mv.vertex(xAx, yAx);
                 
             }
-            mv.endShape();
+            // mv.endShape();
         }
         
         for (int i = 0; i < ab.size(); i++)
         {
-            mv.beginShape();
+            // mv.beginShape();
             float dx = ab.get(i);
             //Right side
             xoff = 0;
@@ -84,12 +85,12 @@ public class ExhibitC extends Visual
                 //make a continuous shape 
                 mv.vertex(xAx, yAx);
             }
-            mv.endShape();
+            // mv.endShape();
             yoff += 0.01;
         }
         // When endshape() is called, all of image data defined since the previous call to beginShape() is written into the image buffer.
         /* END BUTTERFLY */
+
     }
-    
-    // Rose?
 }
+
