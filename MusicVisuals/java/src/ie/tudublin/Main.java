@@ -26,39 +26,18 @@ public class Main
 
     }
 
-	public static void RoughRenders()
-	{
-		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new RoughRenders());
-
-    }
-
-	public static void Solar()
-	{
-		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new Solar());
-
-    }
-
-	//public static void Butterfly()
-	//{
-	//	String[] a = {"MAIN"};
-    //    processing.core.PApplet.runSketch( a, new Butterfly());
-
-    //}
-
-
-	// public static void strings()
+	// public static void Rain()
 	// {
 	// 	String[] a = {"MAIN"};
-    // 	processing.core.PApplet.runSketch( a, new strings());
+    //     processing.core.PApplet.runSketch( a, new Rain());
 
     // }
 
 	public static void main(String[] args)
     {
-        //RoughRenders();
-		// Butt();
-		Solar();
+        // RoughRenders();
+		MyVisuals();
     }
+
+	
 } 

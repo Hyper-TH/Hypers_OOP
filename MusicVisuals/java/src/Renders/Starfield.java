@@ -42,7 +42,7 @@ public class Starfield
         for (int i = 0; i < stars.length; i++) 
         {
             stars[i].update();
-            stars[i].render(mv); // Theres two renders rn
+            stars[i].render(mv); 
         }
     }
 }

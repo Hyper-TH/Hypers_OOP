@@ -1,35 +1,31 @@
 package Renders;
 
+// package ie.tudublin;
+
 import processing.core.PApplet;
 //polar
 
-public class Butterfly extends PApplet
-{
+//this version actually kinda works
+//it static though lol
+
+public class Butterfly extends PApplet{
     
     //for similar noises
     float yoff = 0;
 
-    // public void settings()
-    // {
-    //     // size(400, 400);
-    //     size(1000, 1000, P3D);
-    // }
-
-    // public void setup()
-    // {
-    //     color(HSB);
-    //     background(51);
-    //     smooth();
-    // }
-    
-    MyVisuals mv;
-
-    public Butterfly(MyVisuals mv)
+    public void settings()
     {
-        this.mv = mv;
+        size(400, 400);
     }
 
-    public void render()
+    public void setup()
+    {
+        color(HSB);
+        background(51);
+        smooth();
+    }
+
+    public void draw()
     {
         //put in the center
         translate(width/2, height/2);
@@ -39,7 +35,7 @@ public class Butterfly extends PApplet
 
         float angle;
         float radius = 100;
-        mv.stroke(255);
+        stroke(255);
         fill(255, 50);
         strokeWeight(1);
 
@@ -59,7 +55,7 @@ public class Butterfly extends PApplet
         {
             float no = noise(xoff, yoff);
             //sin(2 * angle) rose maths
-            radius = sin(2 * angle) * PApplet.map(no, 0, 1, 50, 100);
+            radius = sin(2 * angle) * map(no, 0, 1, 50, 100);
             float xAx = sin(frameCount * flap) * radius * cos(angle);
             float yAx = sin(yoff) * radius * sin(angle);
             
