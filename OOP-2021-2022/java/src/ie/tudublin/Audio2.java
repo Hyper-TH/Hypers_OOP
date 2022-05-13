@@ -60,7 +60,7 @@ public class Audio2 extends PApplet {
 
     private boolean twoCubes = false;
 
-    public void draw() {
+    public void render() {
         background(0);
         stroke(255);
         float halfHeight = height / 2;
@@ -78,6 +78,7 @@ public class Audio2 extends PApplet {
 
         switch (which)
         {
+            // Gayzels
             case 0:
             {
                 // Iterate over all the elements in the audio buffer
@@ -91,11 +92,13 @@ public class Audio2 extends PApplet {
                 }        
                 break;
             }   
+
+            // Waveform
             case 1:
             {
                 // Iterate over all the elements in the audio buffer
                 for (int i = 0; i < ab.size(); i++) {
-
+                    
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
                     lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);        
@@ -103,8 +106,8 @@ public class Audio2 extends PApplet {
                 }        
                 break;
             }
-
-            // sides
+            
+            // Waveform
             case 2:
             {
                 for (int i = 0; i < ab.size(); i++) {
@@ -127,6 +130,8 @@ public class Audio2 extends PApplet {
                 }        
                 break;
             }
+
+            // Circle
             case 3:
             {
                 float c = map(average, 0, 1, 0, 255);
@@ -138,6 +143,8 @@ public class Audio2 extends PApplet {
                 ellipse(width / 2, height / 2, 50 + (lerpedAverage * 500), 50 + (lerpedAverage * 500));                
                 break;
             }
+
+            // Square
             case 4:
             {
                 float c = map(average, 0, 1, 0, 255);
@@ -174,7 +181,7 @@ public class Audio2 extends PApplet {
                 break;
             }
 
-            // cube
+            // 3d cube
             case 6:
             {
                 lights();

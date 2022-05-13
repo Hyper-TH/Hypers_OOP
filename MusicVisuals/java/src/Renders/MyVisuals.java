@@ -1,5 +1,6 @@
 package Renders;
 
+import ddf.minim.analysis.*;
 import ie.tudublin.*;
 import processing.core.PApplet;
 
@@ -12,7 +13,15 @@ public class MyVisuals extends Visual
     ExhibitD eD;
     ExhibitE eE;
 
+    BeatDetect beat;
+    
+
     int visual = 0;
+
+    float angle = 0;
+    float angle1 = 0;
+    float angle2 = 0;
+
 
     float[] lerpedBuffer;
 
@@ -43,10 +52,11 @@ public class MyVisuals extends Visual
         eA = new ExhibitA(this);
         eB = new ExhibitB(this);
         eC = new ExhibitC(this);
-        r = new Rain(this);
         eD = new ExhibitD(this);
         eE = new ExhibitE(this);
         // abv = new AudioBandsVisual(this);
+
+        beat = new BeatDetect();
       
     }
 
@@ -66,7 +76,6 @@ public class MyVisuals extends Visual
     }
 
     float lerpedAverage = 0;
-    private float angle = 0;
 
     public void draw()
     {
@@ -75,7 +84,11 @@ public class MyVisuals extends Visual
 
         float average = 0;
         float sum = 0;
-        
+     
+        //Creat Beat Detection On Ap
+        beat.detect(ap.mix);
+
+
         try
         {
             // Call this if you want to use FFT data
@@ -100,13 +113,17 @@ public class MyVisuals extends Visual
         {
             case 0:
             {
+                // camera(0, -500, 500, 0, 0, 0, 500, 0, 0);
                 eA.render();
+                
                 break;
             }
 
             case 1:
             {
+                
                 eB.render();
+
                 break;
             }
 

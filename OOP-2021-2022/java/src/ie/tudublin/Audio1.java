@@ -82,6 +82,8 @@ public class Audio1 extends PApplet
         float cy = height / 2;
 
         switch (mode) {
+
+            // Waveform
             case 0:
             {
                 background(0);
@@ -98,6 +100,7 @@ public class Audio1 extends PApplet
                 break;
             }
             
+            // Gayzels
             case 1:
             {
                 background(0);
@@ -113,6 +116,7 @@ public class Audio1 extends PApplet
                 break;
             }
 
+            // Pointy circle
             case 2:
             {
                 float c = map(smoothedAmplitude, 0, 0.5f, 0, 255);
@@ -140,6 +144,7 @@ public class Audio1 extends PApplet
                 break;
             }
 
+            // Circle
             case 3:
             {
                 background(0);
@@ -153,6 +158,7 @@ public class Audio1 extends PApplet
                 break;
             }
             
+            // Waveform with circle points
             case 4:
             {
                 background(0);

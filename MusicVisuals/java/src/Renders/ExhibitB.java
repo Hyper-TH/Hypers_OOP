@@ -1,8 +1,9 @@
 package Renders;
 
 import ie.tudublin.*;
+import processing.core.PApplet;
  
-public class ExhibitB extends Visual 
+public class ExhibitB extends Visual
 {
     MyVisuals mv;
 
@@ -11,20 +12,13 @@ public class ExhibitB extends Visual
         this.mv = mv;
     }
 
-    
-    // Scattered 3d squares
-    // Something else running in the background
-    public void render() 
+    public void render()
     {
+        /* START 3D CUBES */
         float average = 0;
         float sum = 0;
-        float angle = 0;
         float lerpedAverage = 0;
-        int numCubes;
 
-        // Randomly generate number of cubes
-        // Randomly generate x and y values for each cube
-        
         //Average of the buffer
         for(int i =0; i < ab.size(); i++)
         {
@@ -36,33 +30,38 @@ public class ExhibitB extends Visual
         //Calculate the average amplitutde
         lerpedAverage = lerp(lerpedAverage,average, 0.1f);
 
-        /* START 3D CUBE */
+        //Shading
         mv.lights();
-        float c = map(lerpedAverage, 0, 1, 0, 255);
+        mv.strokeWeight(2);
+
+        float c = PApplet.map(lerpedAverage * 10, 0, 1, 0, 255);
         mv.stroke(c, 255, 255);
         mv.noFill();
-        //fill(100, 255, 255);
-        angle += 0.01f;
-        float s = 100 + (100 * lerpedAverage * 10);
-        
-        // Right
+
+        //Set cubiod rotation to the song
+        mv.angle += 0.01f + mv.getSmoothedAmplitude() / 5;
+
+        float f = 100 + (100 * lerpedAverage * 10);
+
+        //Side Boxes
+        //Left
         mv.pushMatrix();
-        mv.translate(mv.width / 4, mv.height / 2, 0);
-        mv.rotateY(angle);
-        mv.rotateX(angle);
-        mv.box(s);
+            mv.translate(mv.width / 4 - 120, mv.height / 2);
+
+            mv.rotateY(mv.angle);
+            mv.rotateX(mv.angle);
+            mv.box(f);
         mv.popMatrix();
 
-        // Left
+        //Right
         mv.pushMatrix();
-        mv.translate(mv.width * 0.75f, mv.height / 2, 0);
-        mv.rotateY(angle);
-        mv.rotateX(angle);
-        mv.box(s);
+            mv.translate(mv.width * 0.75f + 120, mv.height / 2);
+
+            mv.rotateY(mv.angle);
+            mv.rotateX(mv.angle);
+            mv.box(f);   
         mv.popMatrix();
-        /* END 3D CUBE */
-
-        // ANOTHER RENDER HERE
-    }
-
-} // end Main class
+        /* END 3D CUBES */
+    }    
+}   
+ // end Main class
