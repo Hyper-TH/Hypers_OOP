@@ -1,5 +1,6 @@
 package c20361521;
 
+import Renders.MyVisuals;
 import ie.tudublin.*;
 
 import processing.core.PApplet;

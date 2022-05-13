@@ -43,7 +43,7 @@ public class MyVisuals extends Visual
         eA = new ExhibitA(this);
         eB = new ExhibitB(this);
         eC = new ExhibitC(this);
-        r = new Rain(this);
+        //r = new Rain(this);
         eD = new ExhibitD(this);
         eE = new ExhibitE(this);
         // abv = new AudioBandsVisual(this);
