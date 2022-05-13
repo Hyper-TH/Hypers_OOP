@@ -1,12 +1,14 @@
 package Renders;
 
 import ie.tudublin.*;
+import processing.core.PApplet;
 
 public class MyVisuals extends Visual
 {    
     ExhibitA eA;
     ExhibitB eB;
     ExhibitC eC;
+    // Rain r;
     ExhibitD eD;
     ExhibitE eE;
 
@@ -41,6 +43,7 @@ public class MyVisuals extends Visual
         eA = new ExhibitA(this);
         eB = new ExhibitB(this);
         eC = new ExhibitC(this);
+        r = new Rain(this);
         eD = new ExhibitD(this);
         eE = new ExhibitE(this);
         // abv = new AudioBandsVisual(this);
@@ -54,6 +57,12 @@ public class MyVisuals extends Visual
             getAudioPlayer().cue(0);
             getAudioPlayer().play();
         }
+
+        if (keyCode >= '0' && keyCode <= '5') 
+        {
+            visual = keyCode - '0';
+        }
+
     }
 
     float lerpedAverage = 0;
@@ -104,18 +113,20 @@ public class MyVisuals extends Visual
             case 2:
             {
                 eC.render();
+                // r.render();
+                //r.fall();
                 break;
             }
 
             case 3:
             {
-                eD.render();
+                // eD.render();
                 break;
             }
 
             case 4:
             {
-                eE.render();
+                // eE.render();
                 break;
             }
              

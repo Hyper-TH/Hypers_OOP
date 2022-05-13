@@ -9,7 +9,7 @@ public class Rain extends PApplet
 	final int DLENGTH = 100;
     //ArrayList<rain> drops = new ArrayList<rain>();
     Drops[] drops = new Drops[DLENGTH];
-	Star[] stars = new Star[SLENGTH];
+	Stars[] stars = new Stars[SLENGTH];
 
     public void settings() 
     {
@@ -28,7 +28,7 @@ public class Rain extends PApplet
         }
 		for(int i = 0; i < SLENGTH; i++)
 		{
-			stars[i] = new Star();
+			stars[i] = new Stars();
 		}
     }
 
