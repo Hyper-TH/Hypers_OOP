@@ -5,10 +5,12 @@ package c20361521;
 
 import java.util.Vector;
 
-import processing.core.PApplet;
-import processing.core.PVector;
+// import processing.core.PApplet;
+// import processing.core.PVector;
+import processing.core.*;
 
-public class Solar extends PApplet{
+public class solar extends PApplet
+{
 
     Planet orbiter;
 
@@ -23,42 +25,46 @@ public class Solar extends PApplet{
 
     public void setup() 
     {
-       background(0);
-       orbiter = new Planet(50, 0, 0);
-       //second arrguments is for levels (of moons)
-       orbiter.spawnMoons(1, 1);
-       
+        background(0);
+        orbiter = new Planet(50, 0, 0);
+        //second arrguments is for levels (of moons)
+        orbiter.spawnMoons(1, 1);
+        
     }
-
+    
     //we'll move these to myVisuals at some point :tails
     public void draw()
     {
         lights();
         //translate(width/2, height/2);     //moving the planets without camera
-        orbiter.render();
+        orbiter.show();
         orbiter.orbit();
     }
-
+    
 }
 
 
 class Planet extends PApplet
 {
-    PVector pos;
+    // PVector pos;
     float radius;
-    float angle;
     float distance;
     Planet[] planets;
-
+    float angle;
     float orbitSpeed;
-
-    Object v = processing.core.PVector.random3D();
-
+    PVector v = PVector.random3D();
+    
+    // v = new PVector.random3D();
+    
+    // Object v = processing.core.PVector.random3D();
+    
     Planet (float r, float d, float o)
     {
         //in java we gotta initalise new vectors too :(
-        Vector <Float> v = new Vector<Float>();
-        
+        // Vector <Float> v = new Vector <Float>();
+        // Vector <Float> v = new Vector<>();
+        v = PVector.random3D();
+
         //random 3d vector pointing in space of length 1
         // Object v = processing.core.PVector.random3D();
         radius = r;
@@ -117,7 +123,7 @@ class Planet extends PApplet
         }
     }
 
-    public void render()
+    public void show()
     {  
         //whatever 
         pushMatrix();
@@ -140,7 +146,7 @@ class Planet extends PApplet
         {
             for(int i = 0; i < planets.length; i++)
             {
-                planets[i].render();
+                planets[i].show();
             }
         }
         popMatrix();

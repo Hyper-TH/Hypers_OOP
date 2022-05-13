@@ -9,7 +9,7 @@ public class MyVisuals extends Visual
     ExhibitA eA;
     ExhibitB eB;
     ExhibitC eC;
-    // Rain r;
+    Rose r;
     ExhibitD eD;
     ExhibitE eE;
 
@@ -54,6 +54,7 @@ public class MyVisuals extends Visual
         eC = new ExhibitC(this);
         eD = new ExhibitD(this);
         eE = new ExhibitE(this);
+        r = new Rose(this);
         // abv = new AudioBandsVisual(this);
 
         beat = new BeatDetect();
@@ -137,6 +138,7 @@ public class MyVisuals extends Visual
 
             case 3:
             {
+                r.render();
                 // eD.render();
                 break;
             }

@@ -6,10 +6,12 @@ import processing.core.PApplet;
 public class ExhibitB extends Visual
 {
     MyVisuals mv;
-
+    float cy = 0;
+    
     public ExhibitB(MyVisuals mv)
     {
         this.mv = mv;
+        cy = this.mv.height / 2;
     }
 
     public void render()
@@ -65,15 +67,26 @@ public class ExhibitB extends Visual
         /* END 3D CUBES */
 
         /* START WAVEFORMS */
-        for(int i = 0 ; i < ab.size() ; i ++)
-        {
-            //float c = map(ab.get(i), -1, 1, 0, 255);
-            float g = PApplet.map(i, 0, ab.size(), 0, 255);
-            mv.stroke(g, 255, 255);
-            mv.lerpedBuffer[i] = PApplet.lerp(mv.lerpedBuffer[i], ab.get(i), 0.1f);
-            float l = mv.lerpedBuffer[i] * mv.height/2 * 4.0f;
+        // for(int i = 0 ; i < ab.size() ; i ++)
+        // {
+        //     //float c = map(ab.get(i), -1, 1, 0, 255);
+        //     float g = PApplet.map(i, 0, ab.size(), 0, 255);
+        //     mv.stroke(g, 255, 255);
+        //     mv.lerpedBuffer[i] = PApplet.lerp(mv.lerpedBuffer[i], ab.get(i), 0.1f);
+        //     float l = mv.lerpedBuffer[i] * mv.height/2 * 4.0f;
 
-            mv.line(i, mv.height/2 + l, i, mv.height/2 - l);                    
+        //     mv.line(i, mv.height/2 + l, i, mv.height/2 - l);                    
+        // }
+        
+        for(int i = 0 ; i < mv.getAudioBuffer().size() ; i ++)
+        {
+            mv.stroke(
+                PApplet.map(i, 0, mv.getAudioBuffer().size(), 0, 255)
+                , 255
+                , 255
+            );
+
+            mv.line(i, mv.height/2, i, mv.height/2 + mv.height/2 * mv.getAudioBuffer().get(i));
         }
         /* END WAVEFORMS */
     }    
