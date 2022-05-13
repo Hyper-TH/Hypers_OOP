@@ -19,6 +19,7 @@ public class ExhibitB extends Visual
         float sum = 0;
         float lerpedAverage = 0;
 
+        
         //Average of the buffer
         for(int i =0; i < ab.size(); i++)
         {
@@ -62,6 +63,19 @@ public class ExhibitB extends Visual
             mv.box(f);   
         mv.popMatrix();
         /* END 3D CUBES */
+
+        /* START WAVEFORMS */
+        for(int i = 0 ; i < ab.size() ; i ++)
+        {
+            //float c = map(ab.get(i), -1, 1, 0, 255);
+            float g = PApplet.map(i, 0, ab.size(), 0, 255);
+            mv.stroke(g, 255, 255);
+            mv.lerpedBuffer[i] = PApplet.lerp(mv.lerpedBuffer[i], ab.get(i), 0.1f);
+            float l = mv.lerpedBuffer[i] * mv.height/2 * 4.0f;
+
+            mv.line(i, mv.height/2 + l, i, mv.height/2 - l);                    
+        }
+        /* END WAVEFORMS */
     }    
 }   
  // end Main class

@@ -3,6 +3,9 @@
 Name:
 
 Student Number: 
+Twila Habab C20361521
+Sadhbh Gowran C20365601
+Nathan Flanagan C
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
